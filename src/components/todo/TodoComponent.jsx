@@ -24,7 +24,8 @@ class TodoComponent extends Component{
         if(this.state.id == -1){
             return
         }
-        let username = AuthenticationService.retrieveLoggedInUser();
+        let username = AuthenticationService.retrieveLoggedInUser()
+        //let username = AuthenticationService.retrieveLoggedInUser;
         TododataService.retrieveTodo(username,this.state.id)
         .then(response => this.setState({
 
@@ -49,7 +50,8 @@ class TodoComponent extends Component{
         return errors
     }
     onSubmit(values){
-        let username = AuthenticationService.retrieveLoggedInUser();
+        let username = AuthenticationService.retrieveLoggedInUser()
+       // let username = AuthenticationService.retrieveLoggedInUser;
         let todo = {
             id : this.state.id,
             description : values.description,
