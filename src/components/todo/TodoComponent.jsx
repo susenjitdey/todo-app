@@ -25,7 +25,7 @@ class TodoComponent extends Component{
             return
         }
         let username = AuthenticationService.retrieveLoggedInUser()
-        //let username = AuthenticationService.retrieveLoggedInUser;
+        
         TododataService.retrieveTodo(username,this.state.id)
         .then(response => this.setState({
 
@@ -51,7 +51,7 @@ class TodoComponent extends Component{
     }
     onSubmit(values){
         let username = AuthenticationService.retrieveLoggedInUser()
-       // let username = AuthenticationService.retrieveLoggedInUser;
+       
         let todo = {
             id : this.state.id,
             description : values.description,
@@ -63,7 +63,8 @@ class TodoComponent extends Component{
             .then( () => this.props.history.push('/todos'))
         } else {
             TododataService.updateTodo(username, this.state.id, todo)
-            .then( () => this.props.history.push(`/todos/${this.state.id}`))
+            .then( () => this.props.history.push(`/todos`))
+            
 
     } }
     render() {
@@ -95,7 +96,7 @@ class TodoComponent extends Component{
                                     <label>Target Date</label>
                                     <Field className="form-control" type="date" name="targetDate"></Field>
                                 </fieldset>
-                                <button className="btn btn-success">Save</button>
+                                <button type="submit" className="btn btn-success">Save</button>
                             </Form>
                             
                         )

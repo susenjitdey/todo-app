@@ -28,17 +28,31 @@ class LoginComponent extends Component {
     }
   
     loggedin() {
-      if (this.state.username === "in28minutes" && this.state.password === "dummy") {
-        AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
-        this.props.history.push(`/welcome/${this.state.username}`); // Get the details on the history package on google
-        this.setState({ showSuccessMessage: true });
-        this.setState({ hasLoginFailed: false });
-        console.log("Successful");
-      } else {
-        this.setState({ showSuccessMessage: false });
-        this.setState({ hasLoginFailed: true });
-        console.log("Failed");
-      }
+      // if (this.state.username === "in28minutes" && this.state.password === "dummy") {
+      //   AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
+      //   this.props.history.push(`/welcome/${this.state.username}`); // Get the details on the history package on google
+      //   this.setState({ showSuccessMessage: true });
+      //   this.setState({ hasLoginFailed: false });
+      //   console.log("Successful");
+      // } else {
+      //   this.setState({ showSuccessMessage: false });
+      //   this.setState({ hasLoginFailed: true });
+      //   console.log("Failed");
+      // }
+
+      AuthenticationService.executebasicAuthenticationService(this.state.username,this.state.password)
+      .then(
+           () =>  { AuthenticationService
+            .registerSuccessfulLogin(this.state.username,this.state.password);
+            this.props.history.push(`/welcome/${this.state.username}`); // Get the details on the history package on google
+            this.setState({ showSuccessMessage: true });
+            this.setState({ hasLoginFailed: false });
+           }).catch(() => {
+          this.setState({ showSuccessMessage: false });
+          this.setState({ hasLoginFailed: true });
+        } 
+
+      )
     }
     // handelPasswordChange(event){
     //     console.log(event.target.value);

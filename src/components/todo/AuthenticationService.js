@@ -2,11 +2,27 @@ import axios from "axios"
 
 class AuthenticationService{
 
-    
+    executebasicAuthenticationService(username, password){
+
+        return axios.get('http://localhost:8080/basicauth',
+        {headers: {authorization: this.createBasicAuthToken(username, password)}})
+
+    }
+
+    createBasicAuthToken(username, password){
+
+        return 'Basic ' + window.btoa(username + ":" + password)
+
+    }
+
     registerSuccessfulLogin(username,password){
+        //let username = "in28minutes"
+        //let password = "dummy"
+
+        //let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password)
         console.log("registerSuccessfulLogin called");
         sessionStorage.setItem("authenticateduser", username)
-        this.setupAxiosIntercentors()
+        this.setupAxiosIntercentors(this.createBasicAuthToken(username, password))
     }
 
     logout(){
@@ -32,12 +48,9 @@ class AuthenticationService{
     }
 
     //VVIP method for authorization
-    setupAxiosIntercentors(){
+    setupAxiosIntercentors(basicAuthHeader){
 
-        let username = "in28minutes"
-        let password = "dummy"
-
-        let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password)
+        
 
         axios.interceptors.request.use(
             (config) => {

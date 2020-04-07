@@ -43,9 +43,10 @@ class ListTodosComponent extends Component {
 
   updateTodoClicked(id) {
 
-    console.log(id)
+    //console.log("hello" +id)
 
     this.props.history.push(`/todos/${id}`);
+    //this.refreshTodos();
     ///todos/${id}
     // let username = AuthenticationService.retrieveLoggedInUser();
     // TododataService.deleteTodosById(username, id).then(response => {
