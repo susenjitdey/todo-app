@@ -40,10 +40,26 @@ class LoginComponent extends Component {
       //   console.log("Failed");
       // }
 
-      AuthenticationService.executebasicAuthenticationService(this.state.username,this.state.password)
+      // AuthenticationService.executebasicAuthenticationService(this.state.username,this.state.password)
+      // .then(
+      //      () =>  { AuthenticationService
+      //       .registerSuccessfulLogin(this.state.username,this.state.password);
+      //       this.props.history.push(`/welcome/${this.state.username}`); // Get the details on the history package on google
+      //       this.setState({ showSuccessMessage: true });
+      //       this.setState({ hasLoginFailed: false });
+      //      }).catch(() => {
+      //     this.setState({ showSuccessMessage: false });
+      //     this.setState({ hasLoginFailed: true });
+      //   } 
+
+      // )
+
+      //executeJwtAuthenticationService
+
+      AuthenticationService.executeJwtAuthenticationService(this.state.username,this.state.password)
       .then(
-           () =>  { AuthenticationService
-            .registerSuccessfulLogin(this.state.username,this.state.password);
+           (response) =>  { AuthenticationService
+            .registerSuccessfulLoginForJwt(this.state.username,response.data.token);
             this.props.history.push(`/welcome/${this.state.username}`); // Get the details on the history package on google
             this.setState({ showSuccessMessage: true });
             this.setState({ hasLoginFailed: false });
