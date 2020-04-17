@@ -33,15 +33,15 @@ class AuthenticationService{
 
     }
 
-    // registerSuccessfulLogin(username,password){
-    //     //let username = "in28minutes"
-    //     //let password = "dummy"
+    registerSuccessfulLogin(username,password){
+        //let username = "in28minutes"
+        //let password = "dummy"
 
-    //     //let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password)
-    //     console.log("registerSuccessfulLogin called");
-    //     sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
-    //     this.setupAxiosIntercentors(this.createBasicAuthToken(username, password))
-    // }
+        let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password)
+        console.log("registerSuccessfulLogin called");
+        sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
+        this.setupAxiosIntercentors(this.createBasicAuthToken(username, password))
+    }
 
     registerSuccessfulLoginForJwt(username,token){
 

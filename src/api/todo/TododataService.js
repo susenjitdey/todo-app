@@ -19,19 +19,19 @@ class TododataService{
 
     deleteTodosById(name,id){
         
-        return Axios.delete(`${API_URL}/users/${name}/todos/${id}`);
+        return Axios.delete(`${JPA_API_URL}/users/${name}/todos/${id}`);
         
     }
 
     updateTodo(name, id, todo){
         
-        return Axios.put(`${API_URL}/users/${name}/todos/${id}`, todo);
+        return Axios.put(`${JPA_API_URL}/users/${name}/todos/${id}`, todo);
         
     }
 
     createTodo(name, todo){
         
-        return Axios.post(`${API_URL}/users/${name}/todos/`, todo);
+        return Axios.post(`${JPA_API_URL}/users/${name}/todos/`, todo);
         
     }
 
